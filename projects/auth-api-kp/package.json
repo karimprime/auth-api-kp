@@ -1,6 +1,6 @@
 {
   "name": "auth-api-kp",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/karimprime/auth-api-kp.git"
