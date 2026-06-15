@@ -37,5 +37,9 @@ jobs:
       # Publish the build artifact to npm using Trusted Publisher
       - name: Publish Package to npm
         run: |
-          cd dist/auth-api-kp
+          if [ -d "dist/@karimprime/auth-api-kp" ]; then
+            cd dist/@karimprime/auth-api-kp
+          else
+            cd dist/auth-api-kp
+          fi
           npm publish --access public
