@@ -32,15 +32,9 @@ jobs:
       - name: Build library
         run: npx ng build auth-api-kp --configuration production
 
-      # Publish the build artifact to npm using the Classic NPM_TOKEN
-      # غيرنا الـ Version احتياطياً لـ 0.1.12 لضمان الرفع النظيف بعد الـ Fail السابق
+      # Publish the built library to npm
+      # IMPORTANT: Bump the version in projects/auth-api-kp/package.json before each push
       - name: Publish Package to npm
-        run: |
-          if [ -d "dist/@karimprime/auth-api-kp" ]; then
-            cd dist/@karimprime/auth-api-kp
-          else
-            cd dist/auth-api-kp
-          fi
-          npm publish --access public
+        run: npm publish ./dist/auth-api-kp --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
