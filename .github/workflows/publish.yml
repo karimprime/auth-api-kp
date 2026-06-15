@@ -1,33 +1,41 @@
-name: Publish to NPM
+name: Build and Publish to npm
 
 on:
   push:
-    tags:
-      - 'v*'
-  workflow_dispatch:
+    branches:
+      - main
 
 jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      # Checkout the source code from the repository
+      - name: Checkout code
         uses: actions/checkout@v4
 
+      # Setup Node.js environment with specified version and package registry config
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: '20'
           registry-url: 'https://registry.npmjs.org'
 
+      # Install exact dependencies matching package-lock.json
       - name: Install dependencies
         run: npm ci
 
-      - name: Build Library
+      # Build the specific library 'auth-api-kp' (using 'npm run build' directly fails
+      # because this is a multi-project workspace with no default project)
+      - name: Build library
         run: npx ng build auth-api-kp --configuration production
 
-      - name: Publish to NPM
+      # Publish the build artifact to npm.
+      # IMPORTANT: You must increment the version in 'projects/auth-api-kp/package.json'
+      # before pushing to main, otherwise npm will reject the publish as a duplicate.
+      - name: Publish Package to npm
         run: |
           cd dist/auth-api-kp
           npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+

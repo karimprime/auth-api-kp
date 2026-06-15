@@ -1,0 +1,21 @@
+{
+  "name": "auth-api-kp",
+  "version": "0.1.10",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/karimprime/auth-api-kp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/karimprime/auth-api-kp/issues"
+  },
+  "homepage": "https://github.com/karimprime/auth-api-kp#readme",
+  "peerDependencies": {
+    "@angular/common": ">=14.0.0",
+    "@angular/core": ">=14.0.0",
+    "rxjs": ">=7.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.6.2"
+  },
+  "sideEffects": false
+}

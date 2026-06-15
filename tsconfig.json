@@ -3,6 +3,10 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "paths": {
+      "auth-api-kp": ["./dist/auth-api-kp"],
+      "core-lib": ["./dist/core-lib"]
+    },
     "strict": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
@@ -21,5 +25,19 @@
     "strictInputAccessModifiers": true,
     "strictTemplates": true
   },
-  "files": []
+  "files": [],
+  "references": [
+    {
+      "path": "./projects/core-lib/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/core-lib/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/auth-api-kp/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/auth-api-kp/tsconfig.spec.json"
+    }
+  ]
 }
