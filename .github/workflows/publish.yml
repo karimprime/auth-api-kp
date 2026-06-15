@@ -34,7 +34,7 @@ jobs:
       - name: Build library
         run: npx ng build auth-api-kp --configuration production
 
-      # Publish the build artifact to npm using Trusted Publisher
+      # Publish the build artifact to npm
       - name: Publish Package to npm
         run: |
           if [ -d "dist/@karimprime/auth-api-kp" ]; then
@@ -43,3 +43,5 @@ jobs:
             cd dist/auth-api-kp
           fi
           npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
