@@ -5,15 +5,13 @@ on:
     branches:
       - main
 
+# بنضيف الـ Variable هنا عشان نتخلص من الـ Warning بتاع Node.js تماماً
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   publish:
     runs-on: ubuntu-latest
-
-    # الصلاحيات المطلوبة حصرياً للـ Trusted Publisher
-    permissions:
-      id-token: write
-      contents: read
-
     steps:
       # Checkout the source code from the repository
       - name: Checkout code
@@ -34,7 +32,8 @@ jobs:
       - name: Build library
         run: npx ng build auth-api-kp --configuration production
 
-      # Publish the build artifact to npm
+      # Publish the build artifact to npm using the Classic NPM_TOKEN
+      # غيرنا الـ Version احتياطياً لـ 0.1.12 لضمان الرفع النظيف بعد الـ Fail السابق
       - name: Publish Package to npm
         run: |
           if [ -d "dist/@karimprime/auth-api-kp" ]; then
