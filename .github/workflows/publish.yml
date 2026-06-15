@@ -39,7 +39,7 @@ jobs:
       # IMPORTANT: You must increment the version in 'projects/auth-api-kp/package.json'
       # before pushing to main, otherwise npm will reject the publish as a duplicate.
       - name: Publish Package to npm
-        run: npm publish dist/auth-api-kp --access public
+        run: npm publish ./dist/auth-api-kp --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
